@@ -1,0 +1,24 @@
+{
+  "Group": "Siren",
+  "Name": "OrbisOrigins-X-Mermaids",
+  "Version": "1.0.0",
+  "Description": "Adds Mermaid as an original species in Orbis Origins using the Mermaids mod.",
+  "Authors": [
+    {
+      "Name": "Siren",
+      "Url": "https://mermaids.dev/"
+    }
+  ],
+  "Website": "https://mermaids.dev/mermaids/",
+  "ServerVersion": "2026.02.19-1a311a592",
+  "Dependencies": {
+    "hexvane:OrbisOrigins": "*",
+    "Siren:Mermaids": "*"
+  },
+  "OptionalDependencies": {},
+  "LoadBefore": {},
+  "DisabledByDefault": false,
+  "IncludesAssetPack": true,
+  "SubPlugins": [],
+  "Main": "plugin.siren.OrbisOriginsMermaids"
+}

@@ -19,32 +19,42 @@ import javax.annotation.Nonnull;
 
 public class OnlyInWaterCmd extends AbstractPlayerCommand {
     public OnlyInWaterCmd() {
-        super("mermaidonlyinwater", "Toggles to allow users to only be a mermaid in water.");
+        super("mermaidonlyinwater", "server.commands.oom.originsmermaids.mermaidonlyinwater.desc");
 
         this.requirePermission("orbisoriginsmermaids.mermaidonlyinwater");
     }
 
-    RequiredArg<Boolean> msgMerOnlyWaterArg = this.withRequiredArg("Mermaid only in water", "Boolean to toggle mermaid only in water.", ArgTypes.BOOLEAN);
+    RequiredArg<Boolean> mermaidOnlyInWaterArg = this.withRequiredArg("Mermaid only in water", "server.commands.oom.originsmermaids.mermaidonlyinwater.arg0.desc", ArgTypes.BOOLEAN);
 
     @Override
     protected void execute(@Nonnull CommandContext commandContext, @Nonnull Store<EntityStore> store, @Nonnull Ref<EntityStore> ref, @Nonnull PlayerRef playerRef, @Nonnull World world) {
         Player player = store.getComponent(ref, Player.getComponentType());
 
-        boolean merOnlyWater = msgMerOnlyWaterArg.get(commandContext);
+        boolean mermaidOnlyInWater = mermaidOnlyInWaterArg.get(commandContext);
 
-        OrbisOriginsMermaids.getConfig().get().setMermaidOnlyInWater(merOnlyWater);
+        OrbisOriginsMermaids.getConfig().get().setMermaidOnlyInWater(mermaidOnlyInWater);
         OrbisOriginsMermaids.getConfig().save();
 
-        String toggledStr = "";
-        if (merOnlyWater) {
-            toggledStr = "Enabled";
-        } else {
-            toggledStr = "Disabled";
-        }
-        player.sendMessage(Message.raw("You have " + toggledStr + " the mermaid specie to transform into a mermaid only in water."));
-
-        Mermaids.LOGGER.atInfo().log(player.getDisplayName() + " has toggled the mermaid specie to transform into a mermaid only in water: " + String.valueOf(merOnlyWater) + ".");
-
         MermaidRegister.mermaidOnlyInWater();
+
+        String playerTranslationId = "";
+        String consoleTranslationId = "";
+        if (mermaidOnlyInWater) {
+            playerTranslationId = "server.commands.oom.originsmermaids.mermaidonlyinwater.playerMsg.enabled";
+            consoleTranslationId = "server.commands.oom.originsmermaids.mermaidonlyinwater.consoleMsg.enabled";
+        } else {
+            playerTranslationId = "server.commands.oom.originsmermaids.mermaidonlyinwater.playerMsg.disabled";
+            consoleTranslationId = "server.commands.oom.originsmermaids.mermaidonlyinwater.consoleMsg.disabled";
+        }
+
+        if(player != null) {
+            player.sendMessage(Message.translation(playerTranslationId));
+
+            String consoleMessage = Message.translation(consoleTranslationId).param("username", player.getDisplayName()).getAnsiMessage();
+            Mermaids.LOGGER.atInfo().log(consoleMessage);
+        }else{
+            String consoleMessage = Message.translation(consoleTranslationId).param("username", "Unknown").getAnsiMessage();
+            Mermaids.LOGGER.atInfo().log(consoleMessage);
+        }
     }
 }

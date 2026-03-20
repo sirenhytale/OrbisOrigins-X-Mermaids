@@ -55,15 +55,13 @@ public class OrbisOriginRegister {
                     }
                 }
             }
-
-            HytaleServer.SCHEDULED_EXECUTOR.schedule(checkForMermaidSpecies,7, TimeUnit.SECONDS);
         }
     };
 
     private OrbisOriginRegister(){}
 
     public static void register(){
-        int version = 0;
+        /*int version = 0;
         String id = "mermaid";
         String displayName = "Mermaid";
         String displayNameKey = null;
@@ -91,8 +89,8 @@ public class OrbisOriginRegister {
 
         SpeciesData mermaidSpecies = new SpeciesData(version,id,displayName,displayNameKey,modelBaseName,variants,variantsV2,description,descriptionKey,healthModifier,staminaModifier,manaModifier,enabled,usePlayerModel,enableAttachmentDiscovery,manualAttachments,eyeHeightModifiers,hitboxHeightModifiers,starterItems,damageResistance);
 
-        SpeciesRegistry.registerSpecies(mermaidSpecies);
+        SpeciesRegistry.registerSpecies(mermaidSpecies);*/
 
-        HytaleServer.SCHEDULED_EXECUTOR.schedule(checkForMermaidSpecies,13, TimeUnit.SECONDS);
+        HytaleServer.SCHEDULED_EXECUTOR.scheduleAtFixedRate(checkForMermaidSpecies,15, 8, TimeUnit.SECONDS);
     }
 }

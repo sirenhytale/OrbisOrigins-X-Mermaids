@@ -19,32 +19,42 @@ import javax.annotation.Nonnull;
 
 public class DisableMermaidsContentCmd extends AbstractPlayerCommand {
     public DisableMermaidsContentCmd() {
-        super("disablemermaidscontent", "Toggles to disable normal content from the Mermaids mod.");
+        super("disablemermaidscontent", "server.commands.oom.originsmermaids.disablemermaidscontent.desc");
 
         this.requirePermission("orbisoriginsmermaids.disablemermaidscontent");
     }
 
-    RequiredArg<Boolean> msgDisMerContentArg = this.withRequiredArg("Disable Mermaids Content", "Boolean to disable normal content from the Mermaids mod.", ArgTypes.BOOLEAN);
+    RequiredArg<Boolean> disableMermaidsContentArg = this.withRequiredArg("Disable Mermaids Content", "server.commands.oom.originsmermaids.disablemermaidscontent.arg0.desc", ArgTypes.BOOLEAN);
 
     @Override
     protected void execute(@Nonnull CommandContext commandContext, @Nonnull Store<EntityStore> store, @Nonnull Ref<EntityStore> ref, @Nonnull PlayerRef playerRef, @Nonnull World world) {
         Player player = store.getComponent(ref, Player.getComponentType());
 
-        boolean disMerContent = msgDisMerContentArg.get(commandContext);
+        boolean disableMermaidContent = disableMermaidsContentArg.get(commandContext);
 
-        OrbisOriginsMermaids.getConfig().get().setDisableMermaidsContent(disMerContent);
+        OrbisOriginsMermaids.getConfig().get().setDisableMermaidsContent(disableMermaidContent);
         OrbisOriginsMermaids.getConfig().save();
 
-        String toggledStr = "";
-        if (disMerContent) {
-            toggledStr = "Enabled";
-        } else {
-            toggledStr = "Disabled";
-        }
-        player.sendMessage(Message.raw("You have " + toggledStr + " to disable Mermaids mod content."));
-
-        Mermaids.LOGGER.atInfo().log(player.getDisplayName() + " has toggled to disable Mermaids mod content: " + String.valueOf(disMerContent) + ".");
-
         MermaidRegister.requireForcedMermaids();
+
+        String playerTranslationId = "";
+        String consoleTranslationId = "";
+        if (disableMermaidContent) {
+            playerTranslationId = "server.commands.oom.originsmermaids.disablemermaidscontent.playerMsg.enabled";
+            consoleTranslationId = "server.commands.oom.originsmermaids.disablemermaidscontent.consoleMsg.enabled";
+        } else {
+            playerTranslationId = "server.commands.oom.originsmermaids.disablemermaidscontent.playerMsg.disabled";
+            consoleTranslationId = "server.commands.oom.originsmermaids.disablemermaidscontent.consoleMsg.disabled";
+        }
+
+        if(player != null) {
+            player.sendMessage(Message.translation(playerTranslationId));
+
+            String consoleMessage = Message.translation(consoleTranslationId).param("username", player.getDisplayName()).getAnsiMessage();
+            Mermaids.LOGGER.atInfo().log(consoleMessage);
+        }else{
+            String consoleMessage = Message.translation(consoleTranslationId).param("username", "Unknown").getAnsiMessage();
+            Mermaids.LOGGER.atInfo().log(consoleMessage);
+        }
     }
 }

@@ -1,0 +1,24 @@
+# === commands ===
+
+commands.oom.originsmermaids.desc = The Orbis Origins x Mermaids command line.
+commands.oom.originsmermaids.disablemermaidscontent.desc = Command toggles to disable normal content from the Mermaids mod.
+commands.oom.originsmermaids.disablemermaidscontent.arg0.desc = Boolean to set if the regular mermaids content is disabled.
+commands.oom.originsmermaids.disablemermaidscontent.playerMsg.enabled = You have disable regular content from the Mermaids mod.
+commands.oom.originsmermaids.disablemermaidscontent.playerMsg.disabled = You have enabled regular content from the Mermaids mod to happen.
+commands.oom.originsmermaids.disablemermaidscontent.consoleMsg.enabled = {username} has disable regular content from the Mermaids mod.
+commands.oom.originsmermaids.disablemermaidscontent.consoleMsg.disabled = {username} has enabled regular content from the Mermaids mod to happen.
+commands.oom.originsmermaids.mermaidonlyinwater.desc = Command toggles to disable normal content from the Mermaids mod.
+commands.oom.originsmermaids.mermaidonlyinwater.arg0.desc = Boolean to set if the regular mermaids content is disabled.
+commands.oom.originsmermaids.mermaidonlyinwater.playerMsg.enabled = You have enabled that the mermaid species will transform into a mermaid only in water.
+commands.oom.originsmermaids.mermaidonlyinwater.playerMsg.disabled = You have disabled that the mermaid species will transform into a mermaid only in water.
+commands.oom.originsmermaids.mermaidonlyinwater.consoleMsg.enabled = {username} has enabled that the mermaid species will transform into a mermaid only in water.
+commands.oom.originsmermaids.mermaidonlyinwater.consoleMsg.disabled = {username} has disabled that the mermaid species will transform into a mermaid only in water.
+
+# === species ===
+
+species.mermaid.name = Mermaid
+species.mermaid.desc = A mythical creature who swims faster underwater.
+
+# === updateChecker ===
+
+updateChecker.marriage.release.message = The Orbis Origins X Mermaids Mod version is outdated, Orbis Origins X Mermaids has released v{version}.

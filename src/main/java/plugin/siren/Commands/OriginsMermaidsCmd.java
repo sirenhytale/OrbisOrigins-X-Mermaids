@@ -5,7 +5,7 @@ import plugin.siren.Commands.OriginsMermaids.*;
 
 public class OriginsMermaidsCmd extends AbstractCommandCollection {
     public OriginsMermaidsCmd(){
-        super("originsmermaids","Orbis Origins x Mermaids command line");
+        super("originsmermaids","server.commands.oom.originsmermaids.desc");
 
         this.addSubCommand(new DisableMermaidsContentCmd());
         this.addSubCommand(new OnlyInWaterCmd());
